@@ -319,4 +319,17 @@ if($key != "") {
 ?>
 ```
 
-**Flag:** ``
+Search for `[A-Za-z] /etc/natas_webpass/natas11`
+
+```
+/etc/natas_webpass/natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+dictionary.txt:African
+dictionary.txt:Africans
+dictionary.txt:Allah
+...
+```
+
+**Flag:** `U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK`
+
+
+
