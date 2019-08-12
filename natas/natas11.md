@@ -10,7 +10,6 @@ URL:      http://natas11.natas.labs.overthewire.org
 ```php
 <?
 
-$defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");
 
 function xor_encrypt($in) {
     $key = '<censored>';
@@ -24,7 +23,7 @@ function xor_encrypt($in) {
 }
 
 function loadData($def) {
-    global $_COOKIE;
+    global $_COOKIE;      
     $mydata = $def;
     if(array_key_exists("data", $_COOKIE)) {
         $tempdata = json_decode(xor_encrypt(base64_decode($_COOKIE["data"])), true);
@@ -41,6 +40,8 @@ function loadData($def) {
 function saveData($d) {
     setcookie("data", base64_encode(xor_encrypt(json_encode($d))));
 }
+
+$defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");
 
 $data = loadData($defaultdata);
 
@@ -71,4 +72,37 @@ Background color: <input name=bgcolor value="<?=$data['bgcolor']?>">
 </form>
 ```
 
-**Flag:** ``
+```php
+
+$a = json_encode(array( "showpassword"=>"no", "bgcolor"=>"#ffffff"));
+$b = base64_decode("ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSMX4MNzF+aAw=");
+
+for($i = 0; $i < strlen($a); $i++){
+    echo $a[$i] ^ $b[$i];
+}
+
+// qw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8J...
+```
+
+So `$key` = `qw8J`
+
+```php
+function xor_encrypt($in) {
+    $key = 'qw8J';
+    $text = $in;
+    $outText = '';
+    for($i=0; $i < strlen($text); $i++) {
+        $outText .= $text[$i] ^ $key[$i % strlen($key)];
+    }
+    return $outText;
+}
+
+$a = array( "showpassword"=>"yes", "bgcolor"=>"#ffffff");
+$b = base64_encode(xor_encrypt(json_encode($a)));
+var_dump($b); 
+// ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK=
+```
+
+Then set cookie to new encrypted value and resend with bgcolor = #ffffff
+
+**Flag:** `The password for natas12 is EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3`
